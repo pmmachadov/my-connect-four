@@ -40,7 +40,7 @@ export const createGameModel = () => {
   };
 
   const dropPiece = (col) => {
-    if (winner) return false;
+    if (winner) return null;
     for (let row = rows - 1; row >= 0; row--) {
       if (!board[row][col]) {
         board[row][col] = currentPlayer;
