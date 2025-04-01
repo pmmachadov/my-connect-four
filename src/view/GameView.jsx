@@ -55,7 +55,7 @@ export const GameView = () => {
 
   return (
     <div>
-      <h1>Conecta 4</h1>
+      <h1>Connect Four</h1>
       {renderBoard()}
       {game.winner && <h2>Ganador: {game.winner}</h2>}
       <button onClick={() => controller.resetGame()}>Reiniciar</button>
