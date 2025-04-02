@@ -1,5 +1,6 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #000000;
+    color: #ffffff;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
@@ -7,55 +8,65 @@ body {
     font-size: 20px;
 }
 
-h1, h2, p, button {
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2, p, button {
     font-size: 24px;
 }
 
 .board {
-    display: inline-block;
-    background: linear-gradient(135deg, #178bd8, #752d91);
-    padding: 10px;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(135deg, #292E49, #536976);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    width: max-content;
 }
 
 .row {
     display: flex;
+    gap: 10px;
 }
 
 .cell {
-    width: 60px;
-    height: 60px;
-    background-color: #ecf0f1;
-    border: 2px solid #2980b9;
-    margin: 3px;
+    width: 70px;
+    height: 70px;
+    background-color: #b4b4b4;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
     cursor: pointer;
-    transition: box-shadow 0.2s ease;
 }
 
 .cell:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4);
+    background-color: #fff312e3;
 }
 
 .piece {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
 }
 
 .red {
-    background: radial-gradient(circle, #ff4c4c, #e60000, #ffd2d2);
+    background: radial-gradient(circle, #ff4c4c, #a20000, #ffd2d2);
 }
 
 .yellow {
     background: radial-gradient(circle, #00ff91, #0ea610, #22b5e6);
-}
-
-.blue {
-    background: radial-gradient(circle, #4c9fff, #0066ff, #003399);
 }
 
 .game-info {
@@ -68,7 +79,7 @@ h1, h2, p, button {
     padding: 12px 24px;
     font-size: 20px;
     background-color: #2980b9;
-    color: #fff;
+    color: #f6f6f6;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -77,4 +88,26 @@ h1, h2, p, button {
 
 .reset-button:hover {
     background-color: #2471a3;
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 600px) {
+    .board {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .row {
+        gap: 5px;
+    }
+
+    .cell {
+        width: 50px;
+        height: 50px;
+    }
+
+    .piece {
+        width: 45px;
+        height: 45px;
+    }
 }
