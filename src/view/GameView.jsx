@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createGameController } from "../controller/GameController.jsx";
+import "../App.css";
 
 export const GameView = () => {
   const [game, setGame] = useState(null);
@@ -28,25 +29,20 @@ export const GameView = () => {
 
   const renderBoard = () =>
     game.board.map((row, rowIndex) => (
-      <div key={`row-${row.join("-")}-${rowIndex}`} style={{ display: "flex" }}>
+      <div key={`row-${row.join("-")}-${rowIndex}`} className="row">
         {row.map((cell, colIndex) => {
           const uniqueKey = `row-${rowIndex}-col-${colIndex}`;
           return (
             <button
               key={uniqueKey}
+              className="cell"
               onClick={getHandleCellClick(colIndex)}
               onKeyDown={getHandleCellKeyDown(colIndex)}
-              style={{
-                width: "50px",
-                height: "50px",
-                border: "1px solid black",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: cell ? cell.toLowerCase() : "white",
-                cursor: "pointer",
-              }}
-            />
+              tabIndex={0}
+              aria-label={`Column ${colIndex + 1}`}
+            >
+              {cell && <div className={`piece ${cell.toLowerCase()}`}></div>}
+            </button>
           );
         })}
       </div>
@@ -55,10 +51,14 @@ export const GameView = () => {
   return (
     <div>
       <h1>Connect Four</h1>
-      {renderBoard()}
+      <div className="board">{renderBoard()}</div>
       {game.winner && <h2>Winner: {game.winner}</h2>}
-      <button onClick={() => controller.resetGame()}>Reset</button>
-      <p>Turn: {game.currentPlayer}</p>
+      <button className="reset-button" onClick={() => controller.resetGame()}>
+        Reset
+      </button>
+      <div className="game-info">
+        <p>Next turn: {game.currentPlayer}</p>
+      </div>
     </div>
   );
 };
