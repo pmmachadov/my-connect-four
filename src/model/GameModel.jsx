@@ -71,7 +71,7 @@ export const createGameModel = () => {
         if (checkWin(row, col, currentPlayer)) {
           winner = currentPlayer;
         } else {
-          currentPlayer = currentPlayer === "Red" ? "Yellow" : "Red";
+          currentPlayer = currentPlayer === "Red" ? "Green" : "Red";
         }
         return { row, col };
       }
