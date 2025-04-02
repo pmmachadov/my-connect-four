@@ -11,7 +11,7 @@ export const GameView = () => {
     setController(ctrl);
   }, []);
 
-  if (!game) return <div>Cargando...</div>;
+  if (!game) return <div>Loading...</div>;
 
   const handleClick = (col) => {
     if (controller && !game.winner) {
@@ -19,7 +19,6 @@ export const GameView = () => {
     }
   };
 
-  // Funciones para obtener los manejadores de eventos para cada celda
   const getHandleCellClick = (colIndex) => () => handleClick(colIndex);
   const getHandleCellKeyDown = (colIndex) => (e) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -29,7 +28,7 @@ export const GameView = () => {
 
   const renderBoard = () =>
     game.board.map((row, rowIndex) => (
-      <div key={`row-${rowIndex}`} /* NOSONAR */ style={{ display: "flex" }}>
+      <div key={`row-${row.join("-")}-${rowIndex}`} style={{ display: "flex" }}>
         {row.map((cell, colIndex) => {
           const uniqueKey = `row-${rowIndex}-col-${colIndex}`;
           return (
@@ -57,9 +56,9 @@ export const GameView = () => {
     <div>
       <h1>Connect Four</h1>
       {renderBoard()}
-      {game.winner && <h2>Ganador: {game.winner}</h2>}
-      <button onClick={() => controller.resetGame()}>Reiniciar</button>
-      <p>Turno: {game.currentPlayer}</p>
+      {game.winner && <h2>Winner: {game.winner}</h2>}
+      <button onClick={() => controller.resetGame()}>Reset</button>
+      <p>Turn: {game.currentPlayer}</p>
     </div>
   );
 };

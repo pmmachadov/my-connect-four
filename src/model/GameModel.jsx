@@ -11,32 +11,56 @@ export const createGameModel = () => {
     winner = null;
   };
 
-  const countPieces = (row, col, dr, dc, player) => {
+  const countPieces = (
+    initialRowIndex,
+    initialColumnIndex,
+    rowStep,
+    columnStep,
+    playerMarker
+  ) => {
     let count = 0;
-    let r = row + dr;
-    let c = col + dc;
-    while (r >= 0 && r < rows && c >= 0 && c < cols && board[r][c] === player) {
+    let currentRowIndex = initialRowIndex + rowStep;
+    let currentColumnIndex = initialColumnIndex + columnStep;
+    while (
+      currentRowIndex >= 0 &&
+      currentRowIndex < rows &&
+      currentColumnIndex >= 0 &&
+      currentColumnIndex < cols &&
+      board[currentRowIndex][currentColumnIndex] === playerMarker
+    ) {
       count++;
-      r += dr;
-      c += dc;
+      currentRowIndex += rowStep;
+      currentColumnIndex += columnStep;
     }
     return count;
   };
 
-  const checkWin = (row, col, player) => {
+  const checkWin = (initialRowIndex, initialColumnIndex, playerMarker) => {
     const directions = [
       [0, 1],
       [1, 0],
       [1, 1],
       [1, -1],
     ];
-    return directions.some(([dr, dc]) => {
-      const count =
+    return directions.some(
+      ([rowStep, columnStep]) =>
         1 +
-        countPieces(row, col, dr, dc, player) +
-        countPieces(row, col, -dr, -dc, player);
-      return count >= 4;
-    });
+          countPieces(
+            initialRowIndex,
+            initialColumnIndex,
+            rowStep,
+            columnStep,
+            playerMarker
+          ) +
+          countPieces(
+            initialRowIndex,
+            initialColumnIndex,
+            -rowStep,
+            -columnStep,
+            playerMarker
+          ) >=
+        4
+    );
   };
 
   const dropPiece = (col) => {
@@ -52,7 +76,7 @@ export const createGameModel = () => {
         return { row, col };
       }
     }
-    return null; // Column is full
+    return null;
   };
 
   reset();
