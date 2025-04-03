@@ -1,0 +1,193 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2, p, button {
+    font-size: 24px;
+}
+
+.board {
+    background: linear-gradient(135deg, #292E49, #536976);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px auto;
+    padding: 20px;
+    width: max-content;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.cell {
+    align-items: center;
+    background-color: #b4b4b4;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    width: 70px;
+}
+
+.cell:hover {
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    background-color: #fff312e3;
+    transform: scale(1.4);
+}
+
+.piece {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.red {
+    background: radial-gradient(circle, #ff4c4c, #a20000, #ffd2d2);
+}
+
+.green {
+    background: radial-gradient(circle, #00ff91, #0ea610, #22b5e6);
+}
+
+.game-info {
+    margin-top: 20px;
+}
+
+.reset-button {
+    background-color: #2980b9;
+    border: none;
+    border-radius: 8px;
+    color: #f6f6f6;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    margin: 20px auto;
+    padding: 12px 24px;
+    transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+    background-color: #2471a3;
+}
+
+@media (max-width: 600px) {
+    .board {
+        gap: 5px;
+        padding: 10px;
+    }
+
+    .row {
+        gap: 5px;
+    }
+
+    .cell {
+        height: 50px;
+        width: 50px;
+    }
+
+    .piece {
+        height: 45px;
+        width: 45px;
+    }
+}
+
+.spinner-container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+}
+
+.spinner {
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, cyan, red);
+    border-radius: 50%;
+    height: 150px;
+    position: relative;
+    width: 150px;
+}
+
+.spinner::before {
+    background: #000000;
+    border-radius: 50%;
+    bottom: 24px;
+    content: "";
+    left: 24px;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 10%, 20%, 30%, 50%, 60%, 70%, 80%, 100% {
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    40% {
+        -moz-transform: translateY(-50px);
+        -ms-transform: translateY(-50px);
+        -o-transform: translateY(-50px);
+        -webkit-transform: translateY(-50px);
+        transform: translateY(-50px);
+    }
+
+    60% {
+        -moz-transform: translateY(-21px);
+        -ms-transform: translateY(-21px);
+        -o-transform: translateY(-21px);
+        -webkit-transform: translateY(-21px);
+        transform: translateY(-21px);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bounce {
+    -webkit-animation: bounce 1.2s ease-in-out;
+    animation: bounce 1.2s ease-in-out;
+}
