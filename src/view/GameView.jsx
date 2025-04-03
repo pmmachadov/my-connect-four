@@ -54,7 +54,9 @@ export const GameView = () => {
               tabIndex={0}
               aria-label={`Column ${colIndex + 1}`}
             >
-              {cell && <div className={`piece ${cell.toLowerCase()}`}></div>}
+              {cell && (
+                <div className={`piece ${cell.toLowerCase()} bounce`}></div>
+              )}
             </button>
           );
         })}
