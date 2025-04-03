@@ -5,6 +5,14 @@ import "../App.css";
 export const GameView = () => {
   const [game, setGame] = useState(null);
   const [controller, setController] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const ctrl = createGameController(setGame);
@@ -12,7 +20,12 @@ export const GameView = () => {
     setController(ctrl);
   }, []);
 
-  if (!game) return <div>Loading...</div>;
+  if (!game || loading)
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
 
   const handleClick = (col) => {
     if (controller && !game.winner) {
