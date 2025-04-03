@@ -90,7 +90,6 @@ h2, p, button {
     background-color: #2471a3;
 }
 
-/* Media queries for mobile devices */
 @media (max-width: 600px) {
     .board {
         padding: 10px;
@@ -109,5 +108,39 @@ h2, p, button {
     .piece {
         width: 45px;
         height: 45px;
+    }
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, cyan, red);
+    animation: spin 2s linear infinite;
+    -webkit-animation: spin 2s linear infinite;
+}
+
+.spinner::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    background: #000000;
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
